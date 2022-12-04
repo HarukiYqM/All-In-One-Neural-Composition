@@ -58,10 +58,8 @@ class DecomBlock(nn.Module):
                  stride=1, bias=False, conv=common.default_conv, norm=common.default_norm, act=common.default_act):
         super(DecomBlock, self).__init__()
         group = in_channels // basis_size
-        #self.conv_basis = 
         modules = [conv_basis(filter_bank,in_channels, basis_size, n_basis, kernel_size, stride, bias)]
         #if norm is not None: modules.append(norm(group * n_basis))
-        #if act is not None: modules.append(act())
         modules.append(conv(group * n_basis, out_channels, kernel_size=1, stride=1, bias=bias))
         self.conv = nn.Sequential(*modules)
 
